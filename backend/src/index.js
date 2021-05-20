@@ -14,10 +14,10 @@ app.use(express.json());
 app.use((request, response, next) => {
   //console.log("Acessou o middleware");
   response.header("Access-Control-Allow-Origin","*"); 
-  response.header("Access-Control-Allow-Methods",'GET, PUT, POST, DELETE'); 
+  response.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE")
   /*pode colocar Localhost:3334 | * libera para todos., serve para os metodos tbm, put,get, post*/
   app.use(cors());
-  next();
+  next();//USADO PARA LIBERAR A APLICAÇÃO
 });
 
 mongoose
@@ -34,7 +34,7 @@ mongoose
     console.log("Erro: Conexão não foi Realizada com sucesso");
   });
 
-app.get("/", (request, response) => {
+app.get("/artigo", (request, response) => {
   Artigo.find({})
     .then((artigo) => {
       return response.json(artigo);
