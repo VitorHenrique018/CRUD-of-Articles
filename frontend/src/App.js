@@ -1,24 +1,25 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from 'react';
 import api from "./api";
 
-class App extends Component {
-  state = {
-    artigos: [],
-  };
+const App = () => {
+  const [artigos, setArtigos] = useState([]);
 
-  async componentDidMount() {
-    const response = await api.get("/artigo");
+  useEffect(() => {
 
-    console.log(response.data);
+    async function getItems() {
+      try {
+        const { data } = await api.get("/artigo");
+        setArtigos(data);
+      } catch (error) {
+        alert("Ocorreu um erro ao buscar os items");
+      }
+    }
+    getItems();
 
-    this.setState({ artigos: response.data });
-  }
-
-  render() {
-    const { artigos } = this.state;
+  }, []);
     return (
       <div className="App">
-        <h1>Listar Artigos</h1>
+        <h1>Listar Artigoss</h1>
         <ul>
           {artigos.map((index) => (
             <li key={index.createdAt}>
@@ -29,7 +30,7 @@ class App extends Component {
         </ul>
       </div>
     );
-  }
+  
 }
 
 export default App;
