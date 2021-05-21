@@ -104,7 +104,7 @@ app.delete("/artigo/:id", (request, response) => {
 
 app.listen(3333),
   () => {
-    console.log("Server Rodando");
+    console.log("Server Rodando na porta 3333");
   };
 
 module.exports = app;

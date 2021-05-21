@@ -2,22 +2,24 @@
 
 Essa aplicação será capaz de Criar, Listar, Editar e Excluir artigos.
 
-# Backend - instalação
-
+# Backend 
+INSTALAR:
 yarn 
 
-# Backend - executar
-
+EXECUTAR:
 yarn dev
 
-# FrontEnd - instalação
-
+# FrontEnd
+INSTALAR:
 yarn 
 
-# FrontEnd - executar
-
+EXECUTAR:
 yarn start
 
-ps.: Ainda em Desenvolvimento.
+22/05/2021 - Adições
 
-
+-Organizar API´s em outra pasta;
+-Botão para buscar artigos cadastrados;
+-Campo para buscar artigos individulamente;
+-Campo para adicionar artigos;
+-Campo para remover artigos.

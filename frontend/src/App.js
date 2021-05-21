@@ -4,9 +4,10 @@ import api from "./api";
 const App = () => {
   const [artigos, setArtigos] = useState([]);
 
+  //fazer similar ao da CENTI
   useEffect(() => {
 
-    async function getItems() {
+    async function getArticles() {
       try {
         const { data } = await api.get("/artigo");
         setArtigos(data);
@@ -14,7 +15,7 @@ const App = () => {
         alert("Ocorreu um erro ao buscar os items");
       }
     }
-    getItems();
+    getArticles();
 
   }, []);
     return (
@@ -30,7 +31,6 @@ const App = () => {
         </ul>
       </div>
     );
-  
 }
 
 export default App;
