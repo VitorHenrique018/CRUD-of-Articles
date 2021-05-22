@@ -26,6 +26,6 @@ yarn start
 
 -Campo para adicionar artigos - OK
 
--Campo para remover artigos;
+-Campo para remover artigos - OK (Falta selecionar o artigo apenas)
 
 -Campo para editar Artigos.

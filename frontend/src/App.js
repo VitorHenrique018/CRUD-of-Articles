@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getArticles, createArticles } from "./sources/apiArticles";
+import { getArticles, createArticles, deleteArticles } from "./sources/apiArticles";
 //import api from "./api";
 
 const App = () => {
@@ -7,6 +7,7 @@ const App = () => {
   const [titulo, setTitulo] = useState([]);
   const [conteudo, setConteudo] = useState([]);
   const [checkArticle, setCheckArticle] = useState(false);
+  const [id, setId] = useState('60a66ea3fe9f281d2cbc84f5');
 
   async function getA() {
     try {
@@ -30,6 +31,15 @@ const App = () => {
     }
   }
 
+  async function deleteA() {
+    try {
+      const resp = await deleteArticles(id);
+      alert(resp.message);
+    } catch (err) {
+      console.log("erro");
+    }
+  }
+
   const buscarTodosArtigos = () => {
     getA();
     setCheckArticle((prevCheck) => !prevCheck);
@@ -37,6 +47,10 @@ const App = () => {
 
   const criarArtigo = () => {
     postA();
+  };
+
+  const deletarArtigo = () => {
+    deleteA();
   };
 
   return (
@@ -75,6 +89,10 @@ const App = () => {
           onChange={(e) => setConteudo(e.target.value)}
         />
         <button onClick={criarArtigo}>Criar Artigo</button>
+
+      </div>
+      <div> 
+        <button onClick={deletarArtigo}>Excluir Artigo</button>
 
       </div>
     </div>

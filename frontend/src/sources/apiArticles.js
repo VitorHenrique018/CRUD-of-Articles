@@ -26,6 +26,17 @@ export const getArticles = async () => {
     return summary;
   }
 
+  export const deleteArticles = async (params) => {
+    let summary = [];
+    try {
+      const { data } = await api.delete(`/artigo/${params}`);
+      summary = data;
+    } catch (error) {
+      alert("Ocorreu um erro ao excluir o artigo");
+    }
+    return summary;
+  }
+
   export const editArticles = async () => {
     let summary = [];
     try {
