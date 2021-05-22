@@ -28,4 +28,4 @@ yarn start
 
 -Campo para remover artigos - OK (Falta selecionar o artigo apenas)
 
--Campo para editar Artigos.
+-Campo para editar Artigos - OK (Falta selecionar o artigo apenas)

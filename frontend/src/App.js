@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getArticles, createArticles, deleteArticles } from "./sources/apiArticles";
+import { getArticles, createArticles, deleteArticles, editArticles } from "./sources/apiArticles";
 //import api from "./api";
 
 const App = () => {
@@ -7,7 +7,7 @@ const App = () => {
   const [titulo, setTitulo] = useState([]);
   const [conteudo, setConteudo] = useState([]);
   const [checkArticle, setCheckArticle] = useState(false);
-  const [id, setId] = useState('60a66ea3fe9f281d2cbc84f5');
+  const [id, setId] = useState('60a66ea3fe9f281d2cbc84f6');
 
   async function getA() {
     try {
@@ -31,6 +31,19 @@ const App = () => {
     }
   }
 
+  async function putA() {
+    const obj = {
+      titulo: titulo,
+      conteudo: conteudo
+    }
+    try {
+      const resp = await editArticles(obj, id);
+      alert(resp.message);
+    } catch (err) {
+      console.log("erro");
+    }
+  }
+
   async function deleteA() {
     try {
       const resp = await deleteArticles(id);
@@ -48,6 +61,11 @@ const App = () => {
   const criarArtigo = () => {
     postA();
   };
+
+  const editarArtigo = () => {
+    putA();
+  };
+  
 
   const deletarArtigo = () => {
     deleteA();
@@ -89,11 +107,24 @@ const App = () => {
           onChange={(e) => setConteudo(e.target.value)}
         />
         <button onClick={criarArtigo}>Criar Artigo</button>
-
+      </div>
+      <div>
+        <input
+          placeholder="Titulo"
+          className="input-msg"
+          value={titulo}
+          onChange={(e) => setTitulo(e.target.value)}
+        />
+        <input
+          placeholder="Conteúdo"
+          className="input-msg"
+          value={conteudo}
+          onChange={(e) => setConteudo(e.target.value)}
+        />
+        <button onClick={editarArtigo}>Editar Artigo</button>
       </div>
       <div> 
         <button onClick={deletarArtigo}>Excluir Artigo</button>
-
       </div>
     </div>
   );

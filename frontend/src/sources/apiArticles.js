@@ -37,10 +37,14 @@ export const getArticles = async () => {
     return summary;
   }
 
-  export const editArticles = async () => {
+  export const editArticles = async (obj, id) => {
     let summary = [];
+    const req = {
+      titulo: obj.titulo,
+      conteudo: obj.conteudo
+    }
     try {
-      const { data } = await api.put("/artigo");
+      const { data } = await api.put(`/artigo/${id}`, JSON.stringify(req), { headers: { 'Content-Type': 'application/json' } });
       summary = data;
     } catch (error) {
       alert("Ocorreu um erro ao buscar os items");
