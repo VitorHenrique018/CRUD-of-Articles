@@ -22,7 +22,7 @@ yarn start
 
 -Botão para buscar todos artigos cadastrados - OK
 
--Campo para buscar artigos individulamente;
+-Campo para buscar artigos individulamente, pelo ID - OK 
 
 -Campo para adicionar artigos - OK
 

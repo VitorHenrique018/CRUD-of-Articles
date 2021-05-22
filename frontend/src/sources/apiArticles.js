@@ -52,10 +52,10 @@ export const getArticles = async () => {
     return summary;
   }
 
-  export const getUniqueArticle = async () => {
+  export const getUniqueArticle = async (params) => {
     let summary = [];
     try {
-      const { data } = await api.post("/artigo");
+      const { data } = await api.get(`/artigo/${params}`);
       summary = data;
     } catch (error) {
       alert("Ocorreu um erro ao buscar os items");

@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { getArticles, createArticles, deleteArticles, editArticles } from "./sources/apiArticles";
+import {
+  getArticles,
+  createArticles,
+  deleteArticles,
+  editArticles,
+  getUniqueArticle,
+} from "./sources/apiArticles";
 //import api from "./api";
 
 const App = () => {
@@ -7,7 +13,9 @@ const App = () => {
   const [titulo, setTitulo] = useState([]);
   const [conteudo, setConteudo] = useState([]);
   const [checkArticle, setCheckArticle] = useState(false);
-  const [id, setId] = useState('60a66ea3fe9f281d2cbc84f6');
+  const [id, setId] = useState("60a66ea3fe9f281d2cbc84f6");
+  const [buscarArtigo, setBuscarArtigo] = useState("");
+  const [uniqueArtigo, setUniqueArtigo] = useState([]);
 
   async function getA() {
     try {
@@ -21,8 +29,8 @@ const App = () => {
   async function postA() {
     const obj = {
       titulo: titulo,
-      conteudo: conteudo
-    }
+      conteudo: conteudo,
+    };
     try {
       const resp = await createArticles(obj);
       alert(resp.message);
@@ -34,8 +42,8 @@ const App = () => {
   async function putA() {
     const obj = {
       titulo: titulo,
-      conteudo: conteudo
-    }
+      conteudo: conteudo,
+    };
     try {
       const resp = await editArticles(obj, id);
       alert(resp.message);
@@ -53,6 +61,15 @@ const App = () => {
     }
   }
 
+  async function getID() {
+    try {
+      const resp = await getUniqueArticle(buscarArtigo);
+      setUniqueArtigo(resp);
+    } catch (err) {
+      console.log("erro");
+    }
+  }
+
   const buscarTodosArtigos = () => {
     getA();
     setCheckArticle((prevCheck) => !prevCheck);
@@ -65,10 +82,13 @@ const App = () => {
   const editarArtigo = () => {
     putA();
   };
-  
 
   const deletarArtigo = () => {
     deleteA();
+  };
+
+  const buscarArtigoId = () => {
+    getID();
   };
 
   return (
@@ -123,8 +143,28 @@ const App = () => {
         />
         <button onClick={editarArtigo}>Editar Artigo</button>
       </div>
-      <div> 
+      <div>
         <button onClick={deletarArtigo}>Excluir Artigo</button>
+      </div>
+      <div>
+        <input
+          placeholder="Titulo"
+          className="input-msg"
+          value={buscarArtigo}
+          onChange={(e) => setBuscarArtigo(e.target.value)}
+        />
+        <button onClick={buscarArtigoId}>Buscar artigo Individual</button>
+
+        {uniqueArtigo === [] ? (
+          <p>Nenhum resultado a ser visualizado</p>
+        ) : (
+          <ul>
+            <li key={uniqueArtigo.createdAt}>
+              <h3>{uniqueArtigo.titulo}</h3>
+              <p>{uniqueArtigo.conteudo}</p>
+            </li>
+          </ul>
+        )}
       </div>
     </div>
   );
