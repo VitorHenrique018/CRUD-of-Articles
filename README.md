@@ -19,7 +19,11 @@ yarn start
 22/05/2021 - Adições
 
 -Organizar API´s em outra pasta; - OK
--Botão para buscar todos artigos cadastrados;
+
+-Botão para buscar todos artigos cadastrados - OK
+
 -Campo para buscar artigos individulamente;
+
 -Campo para adicionar artigos;
+
 -Campo para remover artigos.

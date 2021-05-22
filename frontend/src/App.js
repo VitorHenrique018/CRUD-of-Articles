@@ -4,6 +4,7 @@ import { getArticles } from "./sources/apiArticles";
 
 const App = () => {
   const [artigos, setArtigos] = useState([]);
+  const [checkArticle, setCheckArticle] = useState(false);
 
   async function getA() {
     try {
@@ -14,20 +15,34 @@ const App = () => {
     }
   }
 
-  useEffect(() => {
+  useEffect(() => {}, []);
+
+  const buscarTodosArtigos = () => {
     getA();
-  }, []);
+    setCheckArticle((prevCheck) => !prevCheck);
+  };
 
   return (
     <div className="App">
-      <h1>Listar Artigoss</h1>
+      <h1>Listar Artigos</h1>
+
+      {checkArticle === false ? (
+        <button onClick={buscarTodosArtigos}>Buscar Todos os Artigos</button>
+      ) : (
+        <button onClick={buscarTodosArtigos}>Esconder Todos os Artigos</button>
+      )}
+
       <ul>
-        {artigos.map((index) => (
-          <li key={index.createdAt}>
-            <h3>{index.titulo}</h3>
-            <p>{index.conteudo}</p>
-          </li>
-        ))}
+        {checkArticle === false ? (
+          <p>Nenhum resultado a ser visualizado</p>
+        ) : (
+          artigos.map((index) => (
+            <li key={index.createdAt}>
+              <h3>{index.titulo}</h3>
+              <p>{index.conteudo}</p>
+            </li>
+          ))
+        )}
       </ul>
     </div>
   );
