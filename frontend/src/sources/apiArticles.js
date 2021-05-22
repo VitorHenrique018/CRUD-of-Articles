@@ -11,13 +11,17 @@ export const getArticles = async () => {
     return summary;
   }
 
-  export const createArticles = async () => {
+  export const createArticles = async (params) => {
     let summary = [];
+    const obj = {
+      titulo: params.titulo,
+      conteudo: params.conteudo
+    }
     try {
-      const { data } = await api.post("/artigo");
+      const { data } = await api.post("/artigo", JSON.stringify(obj), { headers: { 'Content-Type': 'application/json' } });
       summary = data;
     } catch (error) {
-      alert("Ocorreu um erro ao buscar os items");
+      alert("Ocorreu um erro ao cadastrar os items");
     }
     return summary;
   }

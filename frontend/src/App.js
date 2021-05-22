@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { getArticles } from "./sources/apiArticles";
+import React, { useState } from "react";
+import { getArticles, createArticles } from "./sources/apiArticles";
 //import api from "./api";
 
 const App = () => {
   const [artigos, setArtigos] = useState([]);
+  const [titulo, setTitulo] = useState([]);
+  const [conteudo, setConteudo] = useState([]);
   const [checkArticle, setCheckArticle] = useState(false);
 
   async function getA() {
@@ -15,11 +17,26 @@ const App = () => {
     }
   }
 
-  useEffect(() => {}, []);
+  async function postA() {
+    const obj = {
+      titulo: titulo,
+      conteudo: conteudo
+    }
+    try {
+      const resp = await createArticles(obj);
+      alert(resp.message);
+    } catch (err) {
+      console.log("erro");
+    }
+  }
 
   const buscarTodosArtigos = () => {
     getA();
     setCheckArticle((prevCheck) => !prevCheck);
+  };
+
+  const criarArtigo = () => {
+    postA();
   };
 
   return (
@@ -44,6 +61,22 @@ const App = () => {
           ))
         )}
       </ul>
+      <div>
+        <input
+          placeholder="Titulo"
+          className="input-msg"
+          value={titulo}
+          onChange={(e) => setTitulo(e.target.value)}
+        />
+        <input
+          placeholder="Conteúdo"
+          className="input-msg"
+          value={conteudo}
+          onChange={(e) => setConteudo(e.target.value)}
+        />
+        <button onClick={criarArtigo}>Criar Artigo</button>
+
+      </div>
     </div>
   );
 };
