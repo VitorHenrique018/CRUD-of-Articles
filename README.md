@@ -26,8 +26,8 @@ yarn start
 }
 
 23/05/2021 e 24/05/2021 - Atividades = { 
--Criação de componentes: Headers e Footers - Ok
--Criação de Rotas para cada tipo de action - Ok
+-Criação de componentes: Headers e Footers - OK
+-Criação de Rotas para cada tipo de action - OK
 -Estilização das páginas criadas - OK
--Review da Aplicação: BD, Back e Front;
+-Review da Aplicação: BD, Back e Front - OK
 }
