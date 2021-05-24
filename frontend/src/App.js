@@ -5,8 +5,8 @@ import {
   deleteArticles,
   editArticles,
   getUniqueArticle,
-} from "./sources/apiArticles";
-//import api from "./api";
+} from "./actions/apiArticles";
+import Header from './components/header/header.js'
 
 const App = () => {
   const [artigos, setArtigos] = useState([]);
@@ -93,6 +93,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <Header />
       <h1>Listar Artigos</h1>
 
       {checkArticle === false ? (
