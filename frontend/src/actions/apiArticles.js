@@ -1,4 +1,4 @@
-import api from "../api/api";
+import api from "../api/Api";
 
 export const getArticles = async () => {
     let summary = [];

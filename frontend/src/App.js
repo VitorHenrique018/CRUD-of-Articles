@@ -5,8 +5,8 @@ import {
   deleteArticles,
   editArticles,
   getUniqueArticle,
-} from "./actions/apiArticles";
-import Header from './components/header/header.js'
+} from "./actions/ApiArticles";
+import Header from './components/modules/header/Header.js'
 
 const App = () => {
   const [artigos, setArtigos] = useState([]);

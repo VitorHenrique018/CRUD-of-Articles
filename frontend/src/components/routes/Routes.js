@@ -2,10 +2,10 @@ import React from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 
 import App from '../../App'
-import CriarArtigo from '../../pages/Criar'
-import EditarArtigo from '../..//pages/Editar'
-import ListarArtigo from '../../pages/Listar'
-import ExcluirArtigo from '../../pages/Excluir'
+import CriarArtigo from '../../pages/criar'
+import EditarArtigo from '../../pages/editar'
+import ListarArtigo from '../../pages/listar'
+import ExcluirArtigo from '../../pages/excluir'
 
 const Routes = () => (
     <BrowserRouter>

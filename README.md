@@ -25,12 +25,11 @@ yarn start
 -Campo para editar Artigos - OK (Falta selecionar o artigo apenas)
 }
 
-23/05/2021 - Atividades = { 
--Criação de componentes: Headers e Footers;
--Criação de Rotas para cada tipo de action;
+23/05/2021 e 24/05/2021 - Atividades = { 
+-Criação de componentes: Headers e Footers - Ok
+-Criação de Rotas para cada tipo de action - Ok
 -Estilização das páginas criadas;
 -Criação de um radio para realizar a edição ou exclusão de um artigo;
-
 -Review da Aplicação: BD, Back e Front
 
 }
