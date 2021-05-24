@@ -1,70 +1,35 @@
 import React, { useState } from "react";
-import {
-  getArticles,
-  createArticles,
-  deleteArticles,
-  editArticles,
-  getUniqueArticle,
-} from "./actions/ApiArticles";
-import Header from './components/modules/header/Header.js'
+import { getArticles } from "./actions/ApiArticles";
+import DataTable from "react-data-table-component";
+import Header from "./components/modules/header/Header.js";
+import "./global.css";
 
 const App = () => {
-  const [artigos, setArtigos] = useState([]);
-  const [titulo, setTitulo] = useState([]);
-  const [conteudo, setConteudo] = useState([]);
   const [checkArticle, setCheckArticle] = useState(false);
-  const [id, setId] = useState("60a66ea3fe9f281d2cbc84f6");
-  const [buscarArtigo, setBuscarArtigo] = useState("");
-  const [uniqueArtigo, setUniqueArtigo] = useState([]);
+  const [data, setData] = useState([]);
+  const columns = [
+    {
+      name: "Id",
+      selector: "_id",
+      sortable: true,
+    },
+    {
+      name: "Título",
+      selector: "titulo",
+      sortable: true,
+    },
+    {
+      name: "Conteúdo",
+      selector: "conteudo",
+      sortable: true,
+      right: true,
+    },
+  ];
 
   async function getA() {
     try {
       const resp = await getArticles();
-      setArtigos(resp);
-    } catch (err) {
-      console.log("erro");
-    }
-  }
-
-  async function postA() {
-    const obj = {
-      titulo: titulo,
-      conteudo: conteudo,
-    };
-    try {
-      const resp = await createArticles(obj);
-      alert(resp.message);
-    } catch (err) {
-      console.log("erro");
-    }
-  }
-
-  async function putA() {
-    const obj = {
-      titulo: titulo,
-      conteudo: conteudo,
-    };
-    try {
-      const resp = await editArticles(obj, id);
-      alert(resp.message);
-    } catch (err) {
-      console.log("erro");
-    }
-  }
-
-  async function deleteA() {
-    try {
-      const resp = await deleteArticles(id);
-      alert(resp.message);
-    } catch (err) {
-      console.log("erro");
-    }
-  }
-
-  async function getID() {
-    try {
-      const resp = await getUniqueArticle(buscarArtigo);
-      setUniqueArtigo(resp);
+      setData(resp);
     } catch (err) {
       console.log("erro");
     }
@@ -75,99 +40,30 @@ const App = () => {
     setCheckArticle((prevCheck) => !prevCheck);
   };
 
-  const criarArtigo = () => {
-    postA();
-  };
-
-  const editarArtigo = () => {
-    putA();
-  };
-
-  const deletarArtigo = () => {
-    deleteA();
-  };
-
-  const buscarArtigoId = () => {
-    getID();
-  };
-
   return (
-    <div className="App">
+    <>
       <Header />
-      <h1>Listar Artigos</h1>
+      <div className="container">
+        <h1>Listar Artigos</h1>
 
-      {checkArticle === false ? (
-        <button onClick={buscarTodosArtigos}>Buscar Todos os Artigos</button>
-      ) : (
-        <button onClick={buscarTodosArtigos}>Esconder Todos os Artigos</button>
-      )}
-
-      <ul>
         {checkArticle === false ? (
-          <p>Nenhum resultado a ser visualizado</p>
+          <button className="buttonSearch" onClick={buscarTodosArtigos}>
+            Buscar Todos os Artigos
+          </button>
         ) : (
-          artigos.map((index) => (
-            <li key={index.createdAt}>
-              <h3>{index.titulo}</h3>
-              <p>{index.conteudo}</p>
-            </li>
-          ))
+          <button className="buttonSearch" onClick={buscarTodosArtigos}>
+            Esconder Todos os Artigos
+          </button>
         )}
-      </ul>
-      <div>
-        <input
-          placeholder="Titulo"
-          className="input-msg"
-          value={titulo}
-          onChange={(e) => setTitulo(e.target.value)}
-        />
-        <input
-          placeholder="Conteúdo"
-          className="input-msg"
-          value={conteudo}
-          onChange={(e) => setConteudo(e.target.value)}
-        />
-        <button onClick={criarArtigo}>Criar Artigo</button>
+        <ul>
+          {checkArticle === false ? (
+            <p>Nenhum resultado a ser visualizado</p>
+          ) : (
+            <DataTable columns={columns} data={data} />
+          )}
+        </ul>
       </div>
-      <div>
-        <input
-          placeholder="Titulo"
-          className="input-msg"
-          value={titulo}
-          onChange={(e) => setTitulo(e.target.value)}
-        />
-        <input
-          placeholder="Conteúdo"
-          className="input-msg"
-          value={conteudo}
-          onChange={(e) => setConteudo(e.target.value)}
-        />
-        <button onClick={editarArtigo}>Editar Artigo</button>
-      </div>
-      <div>
-        <button onClick={deletarArtigo}>Excluir Artigo</button>
-      </div>
-      <div>
-        <input
-          placeholder="Titulo"
-          className="input-msg"
-          value={buscarArtigo}
-          onChange={(e) => setBuscarArtigo(e.target.value)}
-        />
-        <button onClick={buscarArtigoId}>Buscar artigo Individual</button>
-
-        {uniqueArtigo === [] ? (
-          <p>Nenhum resultado a ser visualizado</p>
-        ) : (
-          <ul>
-            <li key={uniqueArtigo.createdAt}>
-              <h3>{uniqueArtigo.titulo}</h3>
-              <p>{uniqueArtigo.conteudo}</p>
-            </li>
-          </ul>
-        )}
-      </div>
-    </div>
+    </>
   );
 };
 

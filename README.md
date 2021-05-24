@@ -28,8 +28,6 @@ yarn start
 23/05/2021 e 24/05/2021 - Atividades = { 
 -Criação de componentes: Headers e Footers - Ok
 -Criação de Rotas para cada tipo de action - Ok
--Estilização das páginas criadas;
--Criação de um radio para realizar a edição ou exclusão de um artigo;
--Review da Aplicação: BD, Back e Front
-
+-Estilização das páginas criadas - OK
+-Review da Aplicação: BD, Back e Front;
 }

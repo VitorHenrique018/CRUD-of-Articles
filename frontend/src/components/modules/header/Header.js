@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
-import './header.css'
+import "./header.css";
 
 const Header = () => (
-    <header className="app-header">
-        <span className="app-header__logo"/>
-    </header>
-)
+  <header className="app-header">
+    <h1>Header</h1>
+  </header>
+);
 
-export default Header
+export default Header;
